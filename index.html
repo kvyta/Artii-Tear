@@ -22,24 +22,19 @@
 
     const canvas = document.getElementById('Canvas');
     const ctx = canvas.getContext('2d');
-    const TILE_SIZE = 10;
-    const MAP_CSIZE = 20;
+    const TILE_SIZE = 16;
+    const MAP_CSIZE = 10;
 
     canvas.width = MAP_CSIZE * 3 * TILE_SIZE;
     canvas.height = MAP_CSIZE * 3 * TILE_SIZE;
     
-    const myMap = generateAllTiles(generateAllChunks(MAP_CSIZE, MAP_CSIZE, "seed"), "seed");
-    drawMap(ctx, myMap, "TEMP", TILE_SIZE);
-    
-    /*
     const tileset = new Image();
-    tileset.src = 'tileset.png'; 
+    tileset.src = 'https://uploads.onecompiler.io/44n89u9gc/44n82kjyf/tileset.png';
 
     tileset.onload = () => {
-        const myMap = generateMap(MAP_SIZE, MAP_SIZE, "my-secret-seed");
+        const myMap = generateAllTiles(generateAllChunks(MAP_CSIZE, MAP_CSIZE, "seed"), "seed");
         drawMap(ctx, myMap, tileset, TILE_SIZE);
     };
-    */
   </script>
 </body>
 </html>
