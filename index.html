@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden; /* Prevents scrollbars if your canvas is full-screen */
+    }
+    canvas {
+      display: block; /* Removes the tiny gap at the bottom of the canvas */
+    }
+  </style>
+  </head>
+<body>
+  <canvas id="Canvas" width="600" height="600" style="border:1px solid #000;"></canvas>
+
+  <script type="module">
+    import { generateAllChunks } from './generator.js';
+    import { generateAllTiles } from './generator.js';
+    import { drawMap } from './renderer.js';
+
+    const canvas = document.getElementById('Canvas');
+    const ctx = canvas.getContext('2d');
+    const TILE_SIZE = 10;
+    const MAP_CSIZE = 20;
+
+    canvas.width = MAP_CSIZE * 3 * TILE_SIZE;
+    canvas.height = MAP_CSIZE * 3 * TILE_SIZE;
+    
+    const myMap = generateAllTiles(generateAllChunks(MAP_CSIZE, MAP_CSIZE, "seed"), "seed");
+    drawMap(ctx, myMap, "TEMP", TILE_SIZE);
+    
+    /*
+    const tileset = new Image();
+    tileset.src = 'tileset.png'; 
+
+    tileset.onload = () => {
+        const myMap = generateMap(MAP_SIZE, MAP_SIZE, "my-secret-seed");
+        drawMap(ctx, myMap, tileset, TILE_SIZE);
+    };
+    */
+  </script>
+</body>
+</html>
