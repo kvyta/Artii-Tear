@@ -1,6 +1,7 @@
 import { mapTiles } from './mapping.js';
 
 export function drawMap(ctx, map, tileset, tileSize, scale) {
+  ctx.imageSmoothingEnabled = false;
   map.forEach((row, y) => {
     row.forEach((tileId, x) => {
       var mapping;
