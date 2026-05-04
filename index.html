@@ -9,11 +9,14 @@
     }
     canvas {
       display: block; /* Removes the tiny gap at the bottom of the canvas */
+      image-rendering: pixelated; 
+      image-rendering: crisp-edges;
     }
   </style>
   </head>
 <body>
   <canvas id="Canvas" width="600" height="600" style="border:1px solid #000;"></canvas>
+  
 
   <script type="module">
     import { generateAllChunks } from './generator.js';
@@ -22,18 +25,20 @@
 
     const canvas = document.getElementById('Canvas');
     const ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
     const TILE_SIZE = 16;
-    const MAP_CSIZE = 10;
+    const MAP_CSIZE = 5;
+    const SCALE = 8;
 
-    canvas.width = MAP_CSIZE * 3 * TILE_SIZE;
-    canvas.height = MAP_CSIZE * 3 * TILE_SIZE;
+    canvas.width = MAP_CSIZE * 3 * TILE_SIZE * SCALE;
+    canvas.height = MAP_CSIZE * 3 * TILE_SIZE * SCALE;
     
     const tileset = new Image();
-    tileset.src = 'https://uploads.onecompiler.io/44n89u9gc/44n82kjyf/tileset.png';
+    tileset.src = './Tileset-May4.png';
 
     tileset.onload = () => {
         const myMap = generateAllTiles(generateAllChunks(MAP_CSIZE, MAP_CSIZE, "seed"), "seed");
-        drawMap(ctx, myMap, tileset, TILE_SIZE);
+        drawMap(ctx, myMap, tileset, TILE_SIZE, SCALE);
     };
   </script>
 </body>
